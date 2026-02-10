@@ -59,6 +59,10 @@ export interface BannerModel {
   title: string | null;
   media?: string | null;
   media_file?: File | null;
+  bg?: string | null;
+  bg_file?: File | null;
+  icon?: string | null;
+  icon_file?: File | null;
   code?: string | null;
   highlight_text?: string | null;
   episodes?: string | null;
@@ -174,3 +178,14 @@ export interface ProgramSeasonModel {
 }
 
 
+export type YtVideo = {
+  video_id: string | null;
+  title: string | null;
+  description: string | null;
+  view_count: number | null;
+  thumbnail: string | null;
+};
+
+export type TopCount = {
+  top_10_most_viewed: YtVideo[] | null;
+};
