@@ -1,6 +1,10 @@
 import Splash from "./_components/splash";
+import Banner from "./_components/banner/banner";
+import BannerLoader from "./_components/banner/banner-loader";
 
-export default  function HomeLayout({
+
+import { Suspense } from "react";
+export default async function HomeLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -8,7 +12,12 @@ export default  function HomeLayout({
 
   return (
     <Splash>
-      {children}
+      <div className="w-full">
+        <Suspense fallback={<BannerLoader />}>
+          <Banner />
+        </Suspense>
+        {children}
+      </div>
     </Splash>
   );
 }

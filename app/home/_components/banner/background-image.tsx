@@ -33,7 +33,7 @@ export default function BackgroundImg({
   }, [effectiveSrc]);
 
   return (
-    <div className={`relative overflow-hidden ${className}`}>
+    <div className={`relative overflow-hidden ${className} h-full`}>
       {!loaded && (
         <div className="absolute inset-0 z-0 animate-pulse bg-gray-800">
           <div className="h-full w-full bg-linear-to-r from-gray-800 via-gray-700 to-gray-800" />
@@ -50,9 +50,8 @@ export default function BackgroundImg({
           backgroundRepeat: "no-repeat",
         }}
       />
-
-      {/* Content */}
-      <div className="relative z-10">{children}</div>
+      <div className="relative z-10 
+">{children}</div>
     </div>
   );
 }

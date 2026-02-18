@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import { FaSearch } from "react-icons/fa";
+import Socials from "../socials";
+
 
 export default function Navbar({
     onMenuClick,
@@ -10,7 +12,7 @@ export default function Navbar({
 }) {
 
     return (
-        <header className="absolute  z-40 h-16  md:bg-black/20  w-full">
+        <header className="absolute  z-40 h-16 md:h-18 lg:h-20  bg-gray-950/80 md:bg-gray-950/60 lg:bg-gray-950/30 w-full border-b border-white/10">
             <div className="flex h-full items-center justify-between px-6">
                 <div className="flex md:hidden">
                     <Image
@@ -23,15 +25,16 @@ export default function Navbar({
                 </div>
 
                 {/* Right */}
-                <div className="flex items-center md:gap-3 gap-1">
-                    <div className="flex items-center rounded-full border border-white/20 md:px-5 px-3 md:py-3 py-2">
+                <div className="flex items-center md:gap-3 gap-1 justify-between  md:w-full">
+                    <div className="flex items-center rounded-full border border-white/60 md:px-5 px-3 md:py-3 py-2 focus-within:bg-white/90 transition">
                         <input
                             type="text"
                             placeholder="Search..."
-                            className="bg-transparent text-sm text-white outline-none placeholder:text-white/60 md:w-100 w-40"
+                            className="bg-transparent text-sm text-white outline-none  placeholder:text-white/60 focus-within:placeholder:text-black/60 md:w-90 lg:w-100 w-40 focus:text-black"
                         />
                         <FaSearch className="ml-2 text-white/70" />
                     </div>
+
 
                     <button
                         onClick={onMenuClick}
@@ -40,6 +43,8 @@ export default function Navbar({
                     >
                         <Menu className="h-5 w-5" />
                     </button>
+                    <Socials className="hidden md:flex" />
+
                 </div>
 
             </div>

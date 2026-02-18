@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
 import { montserrat, poppins } from "@/utils/font";
 import "./globals.css";
-import AppShell from "@/components/ui/app-shell";
-import { fetchPrograms} from "@/hooks/fetch-data/programs";
-import { fetchTopYTVideos } from "@/hooks/fetch-data/yt";
+import AppShell from "@/components/ui/layout/app-shell";
+import { fetchPrograms } from "@/hooks/fetch-data/programs";
 import React from "react";
 import { ProgramsModel } from "@/types/models";
 import { fetchAds } from "@/hooks/fetch-data/ads";
+import { loadCategories } from "@/hooks/fetch-data/categories";
+import "keen-slider/keen-slider.min.css"
+import { BackgroundProvider } from "@/components/ui/layout/background-context";
+import QueryProvider from "@/providers/query-providers";
 
 
 export const metadata: Metadata = {
@@ -46,40 +49,34 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const programs: ProgramsModel[] = await fetchPrograms();
-  const youTubeVideos = await fetchTopYTVideos();
+  const categories = await loadCategories();
   const ads = await fetchAds();
   return (
-<html lang="en" className={` ${montserrat.variable} ${poppins.variable}`}>
-  <body className="h-screen max-w-7xl overflow-hidden bg-[#0f0f0f]">
-    <div
-      className="relative h-screen w-screen"
-      style={{
-        backgroundImage: "url('/storage/images/backgrounds/dostv_bg.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
-      <div className="absolute inset-0 bg-black/60" />
+    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`}>
+      <body className="h-screen max-w-7xl overflow-hidden">
 
-      <div
-        className="
-          relative z-10
-          h-screen w-screen
-          bg-white/10
-          backdrop-blur-xl
-          border border-white/10
-        "
-      >
-        <AppShell programs={programs ?? []} youTubeVideos={youTubeVideos} ads={ads ?? []}>
-          <main className="flex-1 h-screen overflow-y-auto font-inter scroll-slim font-poppins">
-            {children}
-          </main>
-        </AppShell>
-      </div>
-    </div>
-  </body>
-</html>
+        <BackgroundProvider>
+          <div className="fixed inset-0 -z-20 bg-slate-950">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]" />
+          </div>
+          <div className="relative z-10 h-screen w-screen bg-white/10 backdrop-blur-sm border border-white/10">
+            <AppShell
+              programs={programs ?? []}
+              ads={ads ?? []}
+              categories={categories ?? []}
+            >
+              <QueryProvider>
+                {children}
+              </QueryProvider>
+
+            </AppShell>
+          </div>
+
+        </BackgroundProvider>
+
+      </body>
+    </html>
+
 
 
 

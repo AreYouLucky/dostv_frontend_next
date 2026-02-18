@@ -9,13 +9,15 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import PrefetchLink from "./prefetch-link";
+import PrefetchLink from "../prefetch-link";
 import { ProgramsModel, AdvertisementModel } from "@/types/models";
-import SidebarCollapseGroup from "./collapseable-links";
+import SidebarCollapseGroup from "../collapseable-links";
 import { usePathname } from "next/navigation";
 import { Suspense } from "react";
-import AdsLoader from "./advertisement/ads-loader";
-import Ads from "./advertisement/ads";
+import AdsLoader from "../advertisement/ads-loader";
+import Ads from "../advertisement/ads";
+import Socials from "../socials";
+import { Activity } from "react";
 
 type SidebarProps = {
     open: boolean;
@@ -44,21 +46,21 @@ export default function Sidebar({
             {/* Mobile overlay */}
             {open && (
                 <div
-                    className="fixed inset-0 z-40 bg-black opacity-5 md:hidden"
+                    className="fixed inset-0 z-40 bg-black opacity-50 md:hidden"
                     onClick={onClose}
                 />
             )}
 
             <aside
                 className={cn(
-                    "fixed z-50 font-inter min-h-screen max-h-screen flex flex-col overflow-hidden",
-                    "md:bg-black/10 bg-black text-white transition-all duration-300 w-55",
+                    "fixed z-50 font-inter min-h-screen max-h-screen flex flex-col overflow-hidden border-r border-gray-50/10",
+                    "md:bg-gray-950/20 bg-black text-white transition-all duration-300",
                     "md:static md:translate-x-0",
                     open ? "translate-x-0" : "-translate-x-full",
-                    isExpanded ? "md:w-60" : "md:w-22"
+                    isExpanded ? "w-60 md:w-40 lg:w-60" : "md:w-16 lg:w-22"
                 )}
             >
-                <div className="flex items-center justify-between  px-5 pb-3 pt-5 border-b border-gray-50/10">
+                <div className="flex items-center justify-between  px-5 py-4 md:py-6 border-b border-gray-50/10">
                     {isExpanded && <div className="font-semibold">
                         <Image
                             src="/storage/images/logos/dostv.png"
@@ -86,7 +88,7 @@ export default function Sidebar({
                                         width={25}
                                         height={25}
                                         sizes="20px"
-                                        className=" max-w-none w-fit pl-2"
+                                        className=" max-w-none w-fit "
                                         priority
                                     />
                                 </div>
@@ -99,12 +101,12 @@ export default function Sidebar({
                         )}
                     </button>
                 </div>
-                <nav className="flex flex-col gap-3 p-4 flex-1 overflow-y-auto scroll-slim">
+                <nav className="flex flex-col gap-3 px-4 py-6 flex-1 overflow-y-auto scroll-slim">
                     <PrefetchLink
                         href="/"
                         className={cn(
                             "text-[14px] font-semibold flex items-center gap-3 rounded px-2 py-2 hover:scale-105 duration-300",
-                            collapsed && "justify-start", path == '/home' ? " text-white " : "text-gray-200"
+                            collapsed && "justify-start", path == '/home' ? " text-white " : "text-gray-200",
                         )}
                     >
                         <Home className={`h-5 w-5 shrink-0 font-bold ${path == '/home' && " text-white"}`} />
@@ -116,12 +118,16 @@ export default function Sidebar({
                                 Programs
                             </p>
                         )}
-                        <SidebarCollapseGroup label="Videos" icon={<Video className="h-5 w-5 shrink-0" />}
-                            items={programs?.filter(program => program.program_type === "Video")} sidebarExpanded={isExpanded}
-                        />
-                        <SidebarCollapseGroup label="Blogs" icon={<Newspaper className="h-5 w-5 shrink-0" />}
-                            items={programs?.filter(program => program.program_type === "Blogs")} sidebarExpanded={isExpanded}
-                        />
+                        <Activity>
+                            <SidebarCollapseGroup label="Videos" icon={<Video className="h-5 w-5 shrink-0" />}
+                                items={programs?.filter(program => program.program_type === "Video")} sidebarExpanded={isExpanded}
+                            />
+                        </Activity>
+                        <Activity>
+                            <SidebarCollapseGroup label="Blogs" icon={<Newspaper className="h-5 w-5 shrink-0" />}
+                                items={programs?.filter(program => program.program_type === "Blogs")} sidebarExpanded={isExpanded}
+                            />
+                        </Activity>
                     </div>
 
 
@@ -154,11 +160,11 @@ export default function Sidebar({
 
                     </div>
 
-
                 </nav>
                 {isExpanded && (
-                    <div className="mt-auto h-65 px-7 w-full max-w-full overflow-hidden hidden md:block">
-                        <div className="font-bold font-inter mb-4 text-[14px] text-gray-400 uppercase">
+                    <div className="mt-auto h-60 px-4 lg:px-7 w-full max-w-full overflow-hidden flex justify-center flex-col items-center">
+                        <Socials className="pb-4 flex md:hidden" />
+                        <div className="font-bold font-inter mb-4 text-[14px] text-gray-400 uppercase text-center">
                             Advertisements
                         </div>
                         <Suspense fallback={<AdsLoader />}>

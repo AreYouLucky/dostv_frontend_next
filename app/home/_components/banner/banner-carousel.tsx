@@ -3,15 +3,13 @@
 import { useEffect, useRef } from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
+import { useBackground } from "@/components/ui/layout/background-context";
 
-import BannerLayout from "./banner-layout";
+import BannerCard from "./banner-card";
 import { BannerModel } from "@/types/models";
 
-export default function Banner({
-    banners,
-}: {
-    banners: BannerModel[];
-}) {
+export default function BannerCarousel({ banners, }: { banners: BannerModel[]; }) {
+    const { setBg } = useBackground()
     const autoplay = useRef(
         Autoplay({
             delay: 10_000,
@@ -24,17 +22,19 @@ export default function Banner({
         { loop: true },
         [autoplay.current]
     );
-
     useEffect(() => {
         if (!emblaApi) return;
 
         const handleSlideChange = () => {
             const slides = emblaApi.slideNodes();
             const activeIndex = emblaApi.selectedScrollSnap();
+            const activeBanner = banners[activeIndex];
+            if (activeBanner?.bg) {
+                setBg(`/storage/images/banners/bgs/${activeBanner.bg}`);
+            }
 
             slides.forEach((slide, index) => {
                 const video = slide.querySelector("video") as HTMLVideoElement | null;
-
                 if (!video) return;
 
                 if (index === activeIndex) {
@@ -52,17 +52,18 @@ export default function Banner({
         return () => {
             emblaApi.off("select", handleSlideChange);
         };
-    }, [emblaApi]);
+    }, [emblaApi, banners, setBg]);
+
 
     return (
-        <div ref={emblaRef} className="embla w-full overflow-hidden">
+        <div ref={emblaRef} className="embla w-full overflow-hidden ">
             <div className="embla__container flex w-full h-full">
                 {banners.map((banner) => (
                     <div
                         key={banner.banner_id}
-                        className="embla__slide relative flex-[0_0_100%] w-full h-full "
+                        className="embla__slide relative flex-[0_0_100%] h-55 md:h-80 lg:h-120   "
                     >
-                        <BannerLayout banner={banner} />
+                        <BannerCard banner={banner} />
                     </div>
                 ))}
             </div>

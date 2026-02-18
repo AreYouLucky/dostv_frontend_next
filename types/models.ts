@@ -1,6 +1,6 @@
 export interface CategoriesModel {
   category_id?: number;
-  title: string;
+  title?: string;
   description: string;
   is_banner?: number;
   is_active?: number;
@@ -35,6 +35,7 @@ export interface ProgramsModel {
   is_active?: number;
   created_at?: string;
   updated_at?: string;
+  episodes?: PostModel[];
   [key: string]: unknown;
 }
 

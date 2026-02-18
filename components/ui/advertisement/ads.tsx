@@ -52,7 +52,7 @@ export default function AdsCarousel({
                 </div>
 
                 {ad.title && (
-                  <div className="text-[13px] font-semibold text-gray-200">
+                  <div className="text-[11px] md:text-[12px] lg:text-[13px] font-semibold text-gray-200 text-center">
                     {ad.title}
                   </div>
                 )}

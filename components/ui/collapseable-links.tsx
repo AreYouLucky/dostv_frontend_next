@@ -25,7 +25,7 @@ export default function SidebarCollapseGroup({
     const path = usePathname();
 
     return (
-        <div className="w-full overflow-hidden">
+        <div className="w-full">
             {/* Group Header */}
             <button
                 type="button"
@@ -52,7 +52,7 @@ export default function SidebarCollapseGroup({
             {/* Items */}
             <div
                 className={cn(
-                    "overflow-y-scroll overflow-x-hidden transition-all duration-300 scroll-slim",
+                    "overflow-y-auto overflow-x-hidden transition-all duration-300 ",
                     open && sidebarExpanded ? "max-h-auto" : "max-h-0"
                 )}
             >
@@ -66,7 +66,7 @@ export default function SidebarCollapseGroup({
                         <PrefetchLink
                             key={index}
                             href={`/program/${item.code}`}
-                            className={`rounded px-2 py-1 text-[13px]  hover:bg-gray-100 hover:text-black hover:scale-105 duration-200 font-regular ${path === `/program/${item.code}` ? "text-white" : "text-gray-300"    }`}
+                            className={`rounded px-2 py-1 text-[13px]  hover:bg-gray-100 hover:text-black  duration-200 font-regular ${path === `/program/${item.code}` ? "text-white" : "text-gray-300"    }`}
                         >
                             {item.title}
                         </PrefetchLink>

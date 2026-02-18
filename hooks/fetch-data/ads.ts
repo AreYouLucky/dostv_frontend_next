@@ -8,7 +8,7 @@ export const fetchAds = async () => {
     }
   );
 
-  if (!res.ok) throw new Error("Failed to fetch programs");
+  if (!res.ok) throw new Error("Failed to fetch advertisements");
   return res.json();
 };
 

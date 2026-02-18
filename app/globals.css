@@ -1,4 +1,10 @@
 @import "tailwindcss";
+/* 
+@theme {
+  --breakpoint-tablet: 768px;
+  --breakpoint-laptop: 1024px;
+  --breakpoint-desktop: 1280px;
+} */
 
 .main {
   min-height: 100vh;
@@ -199,13 +205,19 @@
   }
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
 
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
 
 .scroll-slim {
   overflow: auto;
-  scrollbar-gutter: stable both-edges;
   scrollbar-width: thin;
-  scrollbar-color: rgba(226, 248, 255, 0.55) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.55) transparent;
 
   scroll-behavior: smooth;
   overscroll-behavior: contain;

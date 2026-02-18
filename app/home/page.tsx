@@ -1,62 +1,22 @@
-import { fetchBanners } from "./_hooks/banners";
-import Banner from "./_components/banner";
 
+import HomeContents from "./_components/home-contents";
+import { getBannerCategories } from "@/hooks/fetch-data/categories";
+import { loadRecentPosts } from "./_hooks/posts";
+import { fetchTopYTVideos } from "@/hooks/fetch-data/yt";
 export default async function Home() {
-  const banners = await fetchBanners();
-  return (
-    <div className=" flex items-center flex-col mt-18">
-      <div className="">
-        <Banner banners={banners} />
-      </div>
-            <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
-      <h3>black</h3>
+  const categories = await getBannerCategories();
+  const recentPosts = await loadRecentPosts();
+  const topYt = await fetchTopYTVideos();
 
+  return (
+    <div className="grid w-full min-w-0 ">
+      <div className="w-full overflow-hidden ">
+        <HomeContents
+          categories={categories ?? []}
+          recentPosts={recentPosts ?? []}
+          topCount={topYt}/>
+      </div>
     </div>
+
   );
 }

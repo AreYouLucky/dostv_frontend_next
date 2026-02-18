@@ -1,6 +1,6 @@
 
 import { cn } from "@/lib/utils";
-import PrefetchLink from "./prefetch-link";
+import PrefetchLink from "../prefetch-link";
 import { ChevronDown } from "lucide-react";
 
 type BaseProps = {
