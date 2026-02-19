@@ -30,7 +30,7 @@ export function MorphingCard({ id, title, date_published, slug, program, excerpt
             <AnimatePresence>
                 {isExpanded && (
                     <motion.div
-                        className="fixed inset-0 z-40 bg-gray-100/50 backdrop-blur-sm"
+                        className="fixed inset-0 z-40 bg-gray-100/30 backdrop-blur-sm"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
@@ -41,7 +41,6 @@ export function MorphingCard({ id, title, date_published, slug, program, excerpt
 
             <motion.div
                 layoutId={`card-${id}`}
-                transition={{ type: "spring", stiffness: 300, damping: 30, restDelta: 0.001, duration: 3, mass: 0.5 }}
                 className={cn(
                     "relative w-full",
                     isExpanded

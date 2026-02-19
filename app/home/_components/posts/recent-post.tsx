@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { PostModel } from '@/types/models'
 import HorizontalSlider from '@/components/ui/horizontal-slider'
 import ImageLoader from '@/components/ui/image-loader'

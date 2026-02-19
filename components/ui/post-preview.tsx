@@ -43,7 +43,7 @@ function PostPreview({
                 "
                 >
                     <div className="order-2 md:order-1 flex items-center h-full">
-                        <div className="px-5 py-6 sm:px-8 md:px-12 lg:px-16 max-w-xl space-y-3">
+                        <div className="px-5 py-6  md:px-10 lg:pl-12 lg:pr-0  max-w-xl space-y-3">
                             <p className="text-[11px] border border-white/80 rounded-md w-fit px-3 py-0.5 font-semibold tracking-wide">
                                 {convertLongDate(date_published)}
                             </p>
@@ -60,7 +60,7 @@ function PostPreview({
                                     with {guest}
                                 </p>
                             )}
-                            <p className="text-xs md:text-sm text-white/90 poppins-light line-clamp-4">
+                            <p className="text-sm text-white/90 poppins-light line-clamp-4 text-justify">
                                 {excerpt}
                             </p>
                             <div className="pt-2">
