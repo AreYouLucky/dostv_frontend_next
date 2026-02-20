@@ -1,17 +1,15 @@
 import React from "react";
 
-
-
 interface VideoEmbedProps {
   url?: string;
   platform?: string;
   height?: string;
 }
 
-const LinkPlayer = ({ url = "", platform = "", height = "315px" }: VideoEmbedProps) => {
+const LinkPlayer = ({ url = "", platform = "" }: VideoEmbedProps) => {
   if (!url || !platform) {
     return (
-      <div className="w-full min-h-53.75 flex items-center justify-center border border-dashed rounded-lg">
+      <div className="w-full aspect-video flex items-center justify-center border border-dashed rounded-lg">
         Add video information
       </div>
     );
@@ -36,22 +34,23 @@ const LinkPlayer = ({ url = "", platform = "", height = "315px" }: VideoEmbedPro
   };
 
   return (
-    <iframe
-      src={getEmbedUrl()}
-      width="100%"
-      height={height}
-      style={{ border: "none", borderRadius: "8px" }}
-      allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
-      allowFullScreen
-      loading="lazy"
-      title="Embedded Video"
-    />
+    <div className="w-full aspect-video overflow-hidden rounded border border-white/10">
+      <iframe
+        src={getEmbedUrl()}
+        className="w-full h-full"
+        style={{ border: "none" }}
+        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+        allowFullScreen
+        loading="lazy"
+        title="Embedded Video"
+      />
+    </div>
   );
 };
 
 function extractYouTubeId(url: string): string {
   const match = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&?/]+)/,
+    /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&?/]+)/
   );
   return match ? match[1] : "";
 }

@@ -1,7 +1,8 @@
 import { cache } from "react";
-export const fetchTopYTVideos = cache(async () => {
+
+export const getPost = cache(async (slug: string) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/youtube/top-videos/2026`,
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-post/${slug}`,
     {
       headers: {
         "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN!,
@@ -10,7 +11,7 @@ export const fetchTopYTVideos = cache(async () => {
     }
   );
 
-  if (!res.ok) throw new Error("Failed to fetch yt list");
+  if (!res.ok) throw new Error("Failed to fetch post");
   return res.json();
 });
 

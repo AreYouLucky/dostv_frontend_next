@@ -44,8 +44,12 @@ export default function AppShell({
         />
       </div>
 
-      <div className="flex flex-1 flex-col relative min-w-0 h-screen bg-gray-900/20">
-        <Navbar onMenuClick={() => setSidebarOpen(!sidebarOpen)} />
+      <div
+        className="flex flex-1 flex-col relative min-w-0 h-screen bg-gray-900/60"
+      >
+        <Navbar
+          onMenuClick={() => setSidebarOpen(!sidebarOpen)}
+        />
         <div className="flex-1 overflow-y-auto scroll-slim">
           <main className="w-full min-h-screen">
             {children}

@@ -52,14 +52,26 @@ export default async function RootLayout({
   const categories = await loadCategories();
   const ads = await fetchAds();
   return (
-    <html lang="en" className={`${montserrat.variable} ${poppins.variable}`}>
+    <html lang="en" data-theme="dark" className={`${montserrat.variable} ${poppins.variable}`}>
       <body className="h-screen max-w-7xl overflow-hidden">
 
         <BackgroundProvider>
-          <div className="fixed inset-0 -z-20 bg-slate-950">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_500px_at_50%_200px,#3e3e3e,transparent)]" />
+          <div
+            className="fixed inset-0 -z-20"
+            style={{ background: "var(--app-bg)" }}
+          >
+            <div
+              className="absolute inset-0"
+              style={{ background: "var(--app-radial)" }}
+            />
           </div>
-          <div className="relative z-10 h-screen w-screen bg-white/10 backdrop-blur-sm border border-white/10">
+          <div
+            className="relative z-10 h-screen w-screen backdrop-blur-sm border"
+            style={{
+              background: "var(--shell-bg)",
+              borderColor: "var(--shell-border)",
+            }}
+          >
             <AppShell
               programs={programs ?? []}
               ads={ads ?? []}

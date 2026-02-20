@@ -46,7 +46,7 @@ export default function Sidebar({
             {/* Mobile overlay */}
             {open && (
                 <div
-                    className="fixed inset-0 z-40 bg-black opacity-50 md:hidden"
+                    className="fixed inset-0 z-40 bg-black opacity-50 lg:hidden"
                     onClick={onClose}
                 />
             )}
@@ -54,10 +54,10 @@ export default function Sidebar({
             <aside
                 className={cn(
                     "fixed z-50 font-inter min-h-screen max-h-screen flex flex-col overflow-hidden border-r border-gray-50/10",
-                    "md:bg-gray-950/20 bg-black text-white transition-all duration-300",
-                    "md:static md:translate-x-0",
+                    "lg:bg-gray-900/80 bg-black text-white transition-all duration-300",
+                    "lg:static lg:translate-x-0",
                     open ? "translate-x-0" : "-translate-x-full",
-                    isExpanded ? "w-60 md:w-40 lg:w-60" : "md:w-16 lg:w-22"
+                    isExpanded ? "w-60  lg:w-60" : " lg:w-18"
                 )}
             >
                 <div className="flex items-center justify-between  px-5 py-4 md:py-6 border-b border-gray-50/10">

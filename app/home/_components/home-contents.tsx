@@ -5,9 +5,10 @@ import { useGetDashboardPosts } from "../_hooks/posts"
 import CategoryRadioPills from "@/components/ui/category-radio-pill"
 import RecentPosts from "./posts/recent-post"
 import FetchPosts from "./posts/fetch-post"
+import PostLoader from "./posts/post-loader"
 export default function HomeContents({ categories, recentPosts, topCount }: { categories: CategoriesModel[], recentPosts: PostModel[], topCount: TopCount }) {
   const [selected, setSelected] = useState<number[]>([]);
-  const {data: programs, isFetching } = useGetDashboardPosts(selected);
+  const { data: programs, isFetching } = useGetDashboardPosts(selected);
 
   function handleChange(ids: number[]) {
     setSelected(ids);
@@ -28,9 +29,11 @@ export default function HomeContents({ categories, recentPosts, topCount }: { ca
       <div className="lg:px-10 md:px-5 px-5">
         <div className="border-b border-white/40"></div>
       </div>
-       <div className="flex flex-col justify-between ">
+      <div className="flex flex-col justify-between ">
+        {isFetching ? <PostLoader /> :
           <FetchPosts programs={programs ?? []} topCount={topCount} />
-       </div>
+        }
+      </div>
     </div>
   )
 }

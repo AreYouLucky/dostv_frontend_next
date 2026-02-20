@@ -41,7 +41,7 @@ export function BackgroundProvider({
             priority
             sizes="100vw"
             className="pointer-events-none fixed inset-0 -z-20
-                       object-cover blur-xl scale-110
+                       object-cover blur-sm scale-110
                        opacity-0 transition-opacity duration-700"
           />
         )}
@@ -54,11 +54,11 @@ export function BackgroundProvider({
             priority
             sizes="100vw"
             className="pointer-events-none fixed inset-0 -z-10
-                       object-cover blur-xl scale-110
-                       opacity-40 transition-all duration-700"
+                       object-cover  scale-110
+                        blur-lg transition-all duration-700"
           />
         )}
-        <div className="pointer-events-none fixed inset-0 -z-10 bg-black/50" />
+        <div className="pointer-events-none fixed inset-0 -z-10 bg-slate-700/55" />
 
         {children}
       </div>

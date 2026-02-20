@@ -19,6 +19,7 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.31.1",
+    "isomorphic-dompurify": "^2.36.0",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.563.0",
     "motion": "^12.34.0",
