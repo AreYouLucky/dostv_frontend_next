@@ -19,9 +19,9 @@ export default function HomeContents({ categories, recentPosts, topCount }: { ca
         <CategoryRadioPills categories={categories} onChange={handleChange} />
       </div>
       <div className="flex flex-col justify-between lg:px-5 md:px-3 px-2">
-        <div className=" lg:text-[16px] md:text-[13px] text-[11px] font-bold mb-2 tracking-wider px-3 border-l border-white/40">
+        <h1 className=" lg:text-[16px] md:text-[13px] text-[11px] font-bold mb-2 tracking-wider px-3 border-l border-white/40">
           RECENTLY ADDED
-        </div>
+        </h1>
         <div className="md:px-5 px-2">
           <RecentPosts recentPosts={recentPosts} />
         </div>

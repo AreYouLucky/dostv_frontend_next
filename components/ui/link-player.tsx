@@ -34,7 +34,7 @@ const LinkPlayer = ({ url = "", platform = "" }: VideoEmbedProps) => {
   };
 
   return (
-    <div className="w-full aspect-video overflow-hidden rounded border border-white/10">
+    <div className="w-full lg:h-160 md:h-120 h-80  overflow-hidden rounded border border-white/20">
       <iframe
         src={getEmbedUrl()}
         className="w-full h-full"

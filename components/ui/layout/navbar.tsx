@@ -25,13 +25,13 @@ export default function Navbar({
                         src="/storage/images/logos/dostv.png"
                         alt="DOSTV Logo"
                         width={120} height={100}
-                        className="h-auto w-20 md:w-50"
+                        className="h-auto w-20 md:w-35"
                         priority
                     />
                 </div>
 
                 {/* Right */}
-                <div className="flex items-center md:gap-3 gap-1 justify-between md:w-full">
+                <div className="flex items-center md:gap-3 gap-1 justify-between lg:w-full">
                     <div
                         className="flex items-center rounded-full border  border-white md:px-5 px-3 md:py-3 py-2 transition text-white focus-within:bg-white focus-within:text-black"
                     >
@@ -47,7 +47,7 @@ export default function Navbar({
 
 
 
-                    <Socials className="hidden md:flex" />
+                    <Socials className="hidden lg:flex" />
                     <button
                         onClick={onMenuClick}
                         className="lg:hidden rounded-md p-2 transition"

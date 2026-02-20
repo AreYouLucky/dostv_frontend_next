@@ -13,8 +13,30 @@ import QueryProvider from "@/providers/query-providers";
 
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://dostv.ph"), // ← replace with your real domain
-  title: "DOSTv",
+  metadataBase: new URL("https://dostv.ph"),
+  title: "DOSTv: Science For The People",
+  keywords: [
+    "DOSTv",
+    "DOST Philippines",
+    "science Philippines",
+    "technology Philippines",
+    "innovation",
+    "science for the people",
+    "DOST programs",
+    "Filipino science shows",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
   description:
     "DOSTV brings science closer to every Filipino. It showcases programs, stories, and innovations from the Department of Science and Technology.",
   openGraph: {
@@ -23,7 +45,7 @@ export const metadata: Metadata = {
       "DOSTV brings science closer to every Filipino. It showcases programs, stories, and innovations from the Department of Science and Technology.",
     images: [
       {
-        url: "/storage/images/logos/dostv.png", // now resolves correctly
+        url: "/storage/images/logos/dostv.png",
         width: 1200,
         height: 630,
         alt: "DOSTV Logo",

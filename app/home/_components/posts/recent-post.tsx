@@ -3,7 +3,7 @@ import { PostModel } from '@/types/models'
 import HorizontalSlider from '@/components/ui/horizontal-slider'
 import ImageLoader from '@/components/ui/image-loader'
 import { convertShortDate } from '@/lib/utils'
-
+import Link from 'next/link'
 export default function RecentPosts({ recentPosts }: { recentPosts: PostModel[] }) {
 
 
@@ -11,10 +11,12 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostModel[] 
         <div className="relative w-full min-w-0">
             <HorizontalSlider>
                 {recentPosts.map((post) => (
-                    <div
+                    <Link
+                        href={`/post/${post.slug}`}
                         key={post.post_id}
-                        className="keen-slider__slide group/card flex flex-col overflow-hidden rounded-lg border border-white/10  shadow-lg"
+                       
                     >
+                        <div  className="keen-slider__slide group/card flex flex-col overflow-hidden rounded-lg border border-white/10  shadow-lg">
                         <div className="relative overflow-hidden">
                             <ImageLoader
                                 src={`/storage/images/post_images/thumbnails/${post.thumbnail}`}
@@ -33,7 +35,8 @@ export default function RecentPosts({ recentPosts }: { recentPosts: PostModel[] 
                                 </span>
                             </div>
                         </div>
-                    </div>
+                        </div>
+                    </Link>
 
 
 

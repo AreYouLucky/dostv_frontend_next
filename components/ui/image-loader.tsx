@@ -32,6 +32,7 @@ export default function ImageLoader({
       <Image
         src={src}
         alt={alt} 
+        title={alt}
         width={width ?? 150}
         height={height ?? 150}
         onLoad={() => setLoading(false)}

@@ -54,7 +54,7 @@ export default function Sidebar({
             <aside
                 className={cn(
                     "fixed z-50 font-inter min-h-screen max-h-screen flex flex-col overflow-hidden border-r border-gray-50/10",
-                    "lg:bg-gray-900/80 bg-black text-white transition-all duration-300",
+                    "lg:bg-gray-900/80 bg-gray-800 text-white transition-all duration-300",
                     "lg:static lg:translate-x-0",
                     open ? "translate-x-0" : "-translate-x-full",
                     isExpanded ? "w-60  lg:w-60" : " lg:w-18"
@@ -163,7 +163,7 @@ export default function Sidebar({
                 </nav>
                 {isExpanded && (
                     <div className="mt-auto h-60 px-4 lg:px-7 w-full max-w-full overflow-hidden flex justify-center flex-col items-center">
-                        <Socials className="pb-4 flex md:hidden" />
+                        <Socials className="pb-4 flex lg:hidden" />
                         <div className="font-bold font-inter mb-4 text-[14px] text-gray-400 uppercase text-center">
                             Advertisements
                         </div>

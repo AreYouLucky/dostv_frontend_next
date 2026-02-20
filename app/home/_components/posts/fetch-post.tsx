@@ -18,9 +18,9 @@ export default function FetchPosts({ programs, topCount }: { programs: ProgramsM
                         <>
                             <section className='py-2 md:px-5 px-2'>
                                 <div className='w-full flex flex-row justify-between mb-2 items-center'>
-                                    <div className="  lg:text-[16px] md:text-[13px] text-[11px] font-bold tracking-wider px-3 border-l border-white/40 uppercase">
+                                    <h1 className="  lg:text-[16px] md:text-[13px] text-[11px] font-bold tracking-wider px-3 border-l border-white/40 uppercase">
                                         {program.title}
-                                    </div>
+                                    </h1>
                                     <div className='font-semibold bg-[#000000] h-fit rounded-lg px-4 py-1 text-[12px] border border-white/40'>
                                         View All
                                     </div>

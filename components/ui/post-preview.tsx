@@ -47,9 +47,9 @@ function PostPreview({
                             <p className="text-[11px] border border-white/80 rounded-md w-fit px-3 py-0.5 font-semibold tracking-wide">
                                 {convertLongDate(date_published)}
                             </p>
-                            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
+                            <h1 className="text-xl md:text-2xl lg:text-3xl font-bold leading-tight">
                                 {title}
-                            </h2>
+                            </h1>
                             {program && (
                                 <div className="text-[11.5px] px-3 py-1 bg-[#004a95] rounded-md w-fit font-semibold tracking-wide">
                                     {program}
