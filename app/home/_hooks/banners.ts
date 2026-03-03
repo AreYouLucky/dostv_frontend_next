@@ -7,6 +7,7 @@ export const fetchBanners = async () => {
       {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+          "content-type": "application/json",
         },
       cache: "no-store"
       }

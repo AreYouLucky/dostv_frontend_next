@@ -7,6 +7,7 @@ export const fetchTopYTVideos = async () => {
       {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+          "content-type": "application/json",
         },
       }
     );

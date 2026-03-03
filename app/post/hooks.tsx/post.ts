@@ -9,6 +9,7 @@ export const getPost = async (slug: string) => {
       {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+          "content-type": "application/json",
         },
              cache: "no-store"
       }
@@ -37,6 +38,7 @@ export function useGetProgramRelatedPost(code: string) {
           headers: {
             Accept: "application/json",
             "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN!,
+            "content-type": "application/json",
           },
           cache: "no-store",
         }
