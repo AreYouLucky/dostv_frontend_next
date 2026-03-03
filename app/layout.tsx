@@ -11,7 +11,7 @@ import "keen-slider/keen-slider.min.css"
 import { BackgroundProvider } from "@/components/ui/layout/background-context";
 import QueryProvider from "@/providers/query-providers";
 
-
+export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   metadataBase: new URL("https://dostv.ph"),
   title: "DOSTv: Science For The People",
