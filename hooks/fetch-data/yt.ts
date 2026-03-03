@@ -1,16 +1,25 @@
 import { cache } from "react";
+
 export const fetchTopYTVideos = cache(async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/youtube/top-videos/2026`,
-    {
-      headers: {
-        "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN!,
-      },
-      next: { revalidate: 1800 }
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/youtube/top-videos/2026`,
+      {
+        headers: {
+          "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+        },
+        next: { revalidate: 1800 }, // keep ISR
+      }
+    );
+
+    if (!res.ok) {
+      console.error("YT API failed:", res.status);
+      return [];
     }
-  );
 
-  if (!res.ok) throw new Error("Failed to fetch yt list");
-  return res.json();
+    return await res.json();
+  } catch (error) {
+    console.error("YT fetch error:", error);
+    return [];
+  }
 });
-

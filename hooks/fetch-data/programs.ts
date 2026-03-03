@@ -1,17 +1,25 @@
 import { cache } from "react";
 
-export const fetchPrograms =  cache(async () => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/load-programs`,
-    {
-      headers: {
-        "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN!,
-      },
-      next: { revalidate: 1800 }
+export const fetchPrograms = cache(async () => {
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/load-programs`,
+      {
+        headers: {
+          "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+        },
+        next: { revalidate: 1800 }, // keep ISR
+      }
+    );
+
+    if (!res.ok) {
+      console.error("Programs API failed:", res.status);
+      return [];
     }
-  );
 
-  if (!res.ok) throw new Error("Failed to fetch programs");
-  return res.json();
+    return await res.json();
+  } catch (error) {
+    console.error("Programs fetch error:", error);
+    return [];
+  }
 });
-
