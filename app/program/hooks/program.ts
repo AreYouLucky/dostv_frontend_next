@@ -2,9 +2,9 @@ import { cache } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PostModel } from "@/types/models";
 
-export const getPost = cache(async (slug: string) => {
+export const getProgramInfo = cache(async (slug: string) => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-post/${slug}`,
+    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-program-info/${slug}`,
     {
       headers: {
         "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN!,
@@ -17,13 +17,13 @@ export const getPost = cache(async (slug: string) => {
   return res.json();
 });
 
-export function useGetProgramRelatedPost(code: string) {
+export function useGetProgramRecentPosts(code: string) {
   return useQuery<PostModel[]>({
-    queryKey: ["program-related-post", code],
+    queryKey: ["program-recent-posts", code],
 
     queryFn: async (): Promise<PostModel[]> => {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-related-post-by-program/${code}`,
+        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/program-recent-posts/${code}`,
         {
           headers: {
             Accept: "application/json",
@@ -41,6 +41,3 @@ export function useGetProgramRelatedPost(code: string) {
     staleTime: 1000 * 30,
   });
 }
-
-
-

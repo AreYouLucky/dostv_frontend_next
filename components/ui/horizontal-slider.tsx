@@ -24,7 +24,7 @@ export default function HorizontalSlider({
     breakpoints: {
       "(min-width: 768px)": {
         slides: {
-          perView: 4,
+          perView: 3,
           spacing: 16,
           origin: "auto",
         },

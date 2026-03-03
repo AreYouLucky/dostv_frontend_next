@@ -85,6 +85,7 @@ export interface PostModel {
   title: string | null;
   type: string | null;
   program: string | null;
+  program_title: string | null;
   description: string | null;
   excerpt: string | null;
   episode: string | null;

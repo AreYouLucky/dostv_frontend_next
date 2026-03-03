@@ -39,7 +39,7 @@ const LinkPlayer = ({ url = "", platform = "" }: VideoEmbedProps) => {
         src={getEmbedUrl()}
         className="w-full h-full"
         style={{ border: "none" }}
-        allow="autoplay; clipboard-write; encrypted-media; picture-in-picture"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
         allowFullScreen
         loading="lazy"
         title="Embedded Video"
@@ -50,7 +50,7 @@ const LinkPlayer = ({ url = "", platform = "" }: VideoEmbedProps) => {
 
 function extractYouTubeId(url: string): string {
   const match = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|shorts\/)|youtu\.be\/)([^&?/]+)/
+    /(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([^&?/]+)/
   );
   return match ? match[1] : "";
 }

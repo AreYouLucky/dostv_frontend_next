@@ -24,7 +24,7 @@ export default function UpNext({ post }: { post: PostModel }) {
             onCollapse={() => setExpandedId(null)}
         >
             <div
-                className="flex flex-col gap-3 p-2  text-white"
+                className="flex flex-col gap-3 p-2  text-white hover:scale-105 duration-300"
             >
                 <div className="relative aspect-video w-full rounded-lg overflow-hidden border border-white/10">
                     <ImageLoader
@@ -32,7 +32,7 @@ export default function UpNext({ post }: { post: PostModel }) {
                         alt={post.title || ""}
                         height={300}
                         width={300}
-                        className="object-cover"
+                        className="object-cover h-full w-full"
                     />
                 </div>
 
@@ -40,7 +40,7 @@ export default function UpNext({ post }: { post: PostModel }) {
                     <p className="text-[15px] font-semibold line-clamp-3">
                         {post.title}
                     </p>
-                    <span className="text-[10px] rounded px-2 py-px bg-gray-800 font-semibold text-gray-50">
+                    <span className="text-[10px] rounded px-2 py-px bg-[#00aeef]/80 font-semibold text-gray-50">
                         {convertLongDate(post.date_published as string)}
                     </span>
                 </div>

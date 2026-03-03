@@ -14,12 +14,12 @@ export default function HomeContents({ categories, recentPosts, topCount }: { ca
     setSelected(ids);
   }
   return (
-    <div className="w-full min-w-0 text-white font-poppins flex flex-col  lg:gap-6 md:gap-4 gap-3 ">
+    <div className="w-full min-w-0 text-white font-poppins flex flex-col  lg:gap-5 md:gap-4 gap-3 ">
       <div className="flex justify-center w-full md:pt-3 md:pb-5 py-4 bg-black/60 overflow-hidden  z-30">
         <CategoryRadioPills categories={categories} onChange={handleChange} />
       </div>
-      <div className="flex flex-col justify-between lg:px-5 md:px-3 px-2">
-        <h1 className=" lg:text-[16px] md:text-[13px] text-[11px] font-bold mb-2 tracking-wider px-3 border-l border-white/40">
+      <div className="flex flex-col justify-between lg:px-5 md:px-3 px-2 pt-4">
+        <h1 className=" lg:text-[18px] md:text-[15px] text-[13px] font-bold mb-2 tracking-wider px-3 border-l border-white/40">
           RECENTLY ADDED
         </h1>
         <div className="md:px-5 px-2">

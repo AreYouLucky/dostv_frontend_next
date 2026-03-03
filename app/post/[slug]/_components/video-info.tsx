@@ -7,7 +7,7 @@ export default function VideoInfo({ currentPost, className, children }: { curren
     function popTags(text: string) {
         if (!text) return
         const array = text.split(",");
-        return <>{array.map((item, index) => <span key={index} className='text-[13px] rounded px-2 py-1 ml-1  border tracking-wide'>{item}</span>)}</>
+        return <>{array.map((item, index) => <span key={index} className='text-[13px] rounded px-2 py-1 ml-px  border tracking-wide'>{item}</span>)}</>
     }
     return (
         <div className={`w-full border-b border-white/40 ${className}`}>
@@ -31,7 +31,7 @@ export default function VideoInfo({ currentPost, className, children }: { curren
                                     __html: currentPost?.content ?? "",
                                 }}
                             />
-                            <p className='text-sm poppins-semibold mt-6 mb-2 flex gap-2 flex-wrap'>{popTags(currentPost?.tags as string)}</p>
+                            <p className='text-sm poppins-semibold mt-6 mb-2 flex gap-1 flex-wrap'>{popTags(currentPost?.tags as string)}</p>
                         </div>
 
                     </div>

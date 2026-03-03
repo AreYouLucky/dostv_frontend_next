@@ -15,11 +15,12 @@ export function trimText(text: string, maxLength: number) {
   if (text.length <= maxLength) return text;
   return text.slice(0, maxLength).trim() + "…";
 }
-export function stripHtml(html:string) {
+export function stripHtml(html: string) {
   if (!html) return "";
-  const div = document.createElement("div");
-  div.innerHTML = html;
-  return div.textContent || div.innerText || "";
+  return html
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 export function convertShortDate(date: Date | string | number): string {

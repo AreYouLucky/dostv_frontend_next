@@ -6,6 +6,7 @@ import { useState } from 'react'
 import MdYtList from '../youtube/md-yt-list'
 import { LayoutGroup } from "framer-motion";
 import { MorphingCard } from "@/components/ui/morphing-card";
+import Link from 'next/link'
 
 export default function FetchPosts({ programs, topCount }: { programs: ProgramsModel[], topCount: TopCount }) {
     const [expandedId, setExpandedId] = useState<number | null>(null);
@@ -18,18 +19,18 @@ export default function FetchPosts({ programs, topCount }: { programs: ProgramsM
                         <>
                             <section className='py-2 md:px-5 px-2'>
                                 <div className='w-full flex flex-row justify-between mb-2 items-center'>
-                                    <h1 className="  lg:text-[16px] md:text-[13px] text-[11px] font-bold tracking-wider px-3 border-l border-white/40 uppercase">
+                                    <h1 className="  lg:text-[18px] md:text-[15px] text-[12px] font-bold tracking-wider px-3 border-l border-white/40 ">
                                         {program.title}
                                     </h1>
-                                    <div className='font-semibold bg-[#000000] h-fit rounded-lg px-4 py-1 text-[12px] border border-white/40'>
+                                    <Link href={`/program/${program.code}`} className='font-semibold  h-fit rounded-lg px-4 py-1 text-[12px] border border-white/40'>
                                         View All
-                                    </div>
+                                    </Link>
                                 </div>
 
                                 <div className="relative w-full min-w-0 md:px-5 px-2">
 
                                     <LayoutGroup>
-                                        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4'>
+                                        <div className='grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 lg:gap-2.5 gap-4'>
                                             {program.episodes?.map((episode) => (
                                                 <MorphingCard
                                                     key={episode.post_id}
@@ -73,9 +74,9 @@ export default function FetchPosts({ programs, topCount }: { programs: ProgramsM
                                                             </div>
                                                         </div>
 
-                                                        <div className="absolute inset-x-0 top-0 flex items-center justify-between px-3 py-2 text-[11px] font-medium">
+                                                        <div className="absolute inset-x-0 top-0 right-0 w-fit flex items-center justify-between px-2 py-2 text-[10.5px] font-medium ">
 
-                                                            <span className="text-white/90 font-bold">
+                                                            <span className="text-white/90 font-semibold bg-black/60 px-2 py-px rounded-sm">
                                                                 {convertShortDate(episode.date_published ?? "")}
                                                             </span>
                                                         </div>
@@ -87,7 +88,7 @@ export default function FetchPosts({ programs, topCount }: { programs: ProgramsM
                                     </LayoutGroup>
                                 </div>
                             </section>
-                            <div className="lg:px-8 md:px-5 px-5 py-8">
+                            <div className="lg:px-8 md:px-5 px-5 py-4">
                                 <div className="border-b border-white/40"></div>
                             </div>
                         </>

@@ -2,9 +2,10 @@ import { Metadata } from "next";
 import { getPost } from "../hooks.tsx/post";
 import VideoInfo from "./_components/video-info";
 import { PostModel } from "@/types/models";
-import SetBg from "./_components/set-bg";
+import SetBg from "@/components/set-bg";
 import SimilarPost from "./_components/similar-post";
 import UpNext from "./_components/up-next";
+import PostRelatedProgram from "./_components/post-related-program";
 type Props = {
   params: Promise<{ slug: string }>;
 };
@@ -31,6 +32,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: post.excerpt,
     keywords: [
       "DOSTv",
+      "DOSTv Video",
+      "DOSTv Post",
       "DOST Philippines",
       "science Philippines",
       "technology Philippines",
@@ -90,16 +93,21 @@ export default async function PostPage({ params }: Props) {
       <SetBg thumbnail={`/storage/images/post_images/thumbnails/${currentPost.thumbnail}`} />
       <div className="flex  flex-col gap-2">
         <VideoInfo currentPost={currentPost} className="mb-4">
-          <div className=" lg:text-[18px] md:text-[13px] text-[11px] font-bold tracking-widest text-white uppercase">
-            Up NEXT
+          <div className="w-100">
+            <div className=" lg:text-[18px] md:text-[13px] text-[11px] font-bold tracking-widest text-white uppercase">
+              Up NEXT
+            </div>
+            {relatedPosts.slice(0, 1).map((related, index) => (
+              <UpNext post={related} key={index} />
+            ))}
           </div>
-          {relatedPosts.slice(0, 1).map((related, index) => (
-            
-            <UpNext post={related} key={index}/>
-            
-          ))}
+
         </VideoInfo>
-        <SimilarPost relatedPosts={relatedPosts} className="mb-4 px-4 md:px-0" />
+        <SimilarPost relatedPosts={relatedPosts} className=" px-4 md:px-0" />
+        <div className="">
+          <div className="border-b border-white/40"></div>
+        </div>
+        <PostRelatedProgram code={currentPost.post_program.code as string} program_name={currentPost.post_program.title} />
       </div>
     </div>
   );

@@ -75,7 +75,7 @@ export default async function RootLayout({
   const ads = await fetchAds();
   return (
     <html lang="en" data-theme="dark" className={`${montserrat.variable} ${poppins.variable}`}>
-      <body className="h-screen max-w-7xl overflow-hidden">
+      <body className="h-screen max-w-7xl overflow-hidden font-montserrat">
 
         <BackgroundProvider>
           <div

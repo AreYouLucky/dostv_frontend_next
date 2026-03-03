@@ -2,7 +2,6 @@
 import {
     Home,
     Video,
-    Newspaper,
     ChevronLeft,
     ChevronRight,
     MicVocal, Info
@@ -57,7 +56,7 @@ export default function Sidebar({
                     "lg:bg-gray-900/80 bg-gray-800 text-white transition-all duration-300",
                     "lg:static lg:translate-x-0",
                     open ? "translate-x-0" : "-translate-x-full",
-                    isExpanded ? "w-60  lg:w-60" : " lg:w-18"
+                    isExpanded ? "w-60  lg:w-58" : " lg:w-18"
                 )}
             >
                 <div className="flex items-center justify-between  px-5 py-4 md:py-6 border-b border-gray-50/10">
@@ -119,13 +118,8 @@ export default function Sidebar({
                             </p>
                         )}
                         <Activity>
-                            <SidebarCollapseGroup label="Videos" icon={<Video className="h-5 w-5 shrink-0" />}
+                            <SidebarCollapseGroup label="DOSTV" icon={<Video className="h-5 w-5 shrink-0" />}
                                 items={programs?.filter(program => program.program_type === "Video")} sidebarExpanded={isExpanded}
-                            />
-                        </Activity>
-                        <Activity>
-                            <SidebarCollapseGroup label="Blogs" icon={<Newspaper className="h-5 w-5 shrink-0" />}
-                                items={programs?.filter(program => program.program_type === "Blogs")} sidebarExpanded={isExpanded}
                             />
                         </Activity>
                     </div>

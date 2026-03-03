@@ -22,7 +22,7 @@ export default function ImageLoader({
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="relative w-full h-full overflow-hidden">
+    <div className="relative w-full h-full overflow-hidden ">
       {loading && (
         <div className="absolute inset-0 z-10 flex items-center justify-center bg-black/40">
           <ImSpinner className="text-white/80 text-xl animate-spin" />

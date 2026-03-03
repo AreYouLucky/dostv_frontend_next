@@ -32,7 +32,7 @@ function PostPreview({
        <div className="w-full h-full rounded-xl overflow-hidden border border-white">
             <BackgroundImg
                 imageSrc={`/storage/images/post_images/thumbnails/${thumbnail}`}
-                className="min-h-105 md:min-h-100 lg:min-h-130"
+                className="min-h-105 md:min-h-100 lg:min-h-130 "
             >
                 <div
                     className="
