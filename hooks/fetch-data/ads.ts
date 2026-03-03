@@ -1,4 +1,5 @@
 import { cache } from "react";
+export const dynamic = "force-dynamic";
 
 export const fetchAds = cache(async () => {
   try {
@@ -8,7 +9,7 @@ export const fetchAds = cache(async () => {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
         },
-        cache: "no-store", // prevents build-time prerender crash
+        next: { revalidate: 60 } 
       }
     );
 
