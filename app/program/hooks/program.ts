@@ -2,21 +2,30 @@ import { cache } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PostModel } from "@/types/models";
 
+
 export const getProgramInfo = cache(async (slug: string) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-program-info/${slug}`,
-    {
-      headers: {
-        "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN!,
-      },
-      next: { revalidate: 1800 }
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-program-info/${slug}`,
+      {
+        headers: {
+          "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+        },
+        next: { revalidate: 1800 }, // keep ISR
+      }
+    );
+
+    if (!res.ok) {
+      console.error("Program info failed:", res.status);
+      return null;
     }
-  );
 
-  if (!res.ok) throw new Error("Failed to fetch post");
-  return res.json();
+    return await res.json();
+  } catch (error) {
+    console.error("Program info fetch error:", error);
+    return null;
+  }
 });
-
 export function useGetProgramRecentPosts(code: string) {
   return useQuery<PostModel[]>({
     queryKey: ["program-recent-posts", code],

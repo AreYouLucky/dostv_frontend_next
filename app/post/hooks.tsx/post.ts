@@ -3,18 +3,27 @@ import { useQuery } from "@tanstack/react-query";
 import { PostModel } from "@/types/models";
 
 export const getPost = cache(async (slug: string) => {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-post/${slug}`,
-    {
-      headers: {
-        "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN!,
-      },
-      next: { revalidate: 1800 }
-    }
-  );
+  try {
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-post/${slug}`,
+      {
+        headers: {
+          "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+        },
+        next: { revalidate: 1800 }, // keep ISR
+      }
+    );
 
-  if (!res.ok) throw new Error("Failed to fetch post");
-  return res.json();
+    if (!res.ok) {
+      console.error("Get post failed:", res.status);
+      return null;
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Get post fetch error:", error);
+    return null;
+  }
 });
 
 export function useGetProgramRelatedPost(code: string) {
