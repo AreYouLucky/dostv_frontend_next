@@ -1,9 +1,13 @@
 
+const baseURL =
+  typeof window === "undefined"
+    ? process.env.BACKEND_INTERNAL_URL
+    : process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 export const fetchPrograms = async () => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/load-programs`,
+      `${baseURL}/api/load-programs`,
       {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",

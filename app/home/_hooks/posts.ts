@@ -1,7 +1,10 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { ProgramsModel } from "@/types/models";
-
+const baseURL =
+  typeof window === "undefined"
+    ? process.env.BACKEND_INTERNAL_URL
+    : process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 export function useGetDashboardPosts(categories: number[] = []) {
   return useQuery<ProgramsModel[]>({
@@ -15,7 +18,7 @@ export function useGetDashboardPosts(categories: number[] = []) {
       });
 
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-dashboard-posts?${params.toString()}`,
+        `${baseURL}/api/get-dashboard-posts?${params.toString()}`,
         {
           headers: {
             Accept: "application/json",
@@ -38,13 +41,16 @@ export function useGetDashboardPosts(categories: number[] = []) {
 }
 
 
+
+
 export const loadRecentPosts =async () => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/recent-posts`,
+      `${baseURL}/api/recent-posts`,
       {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
+          "content-type": "application/json",
         },
       cache: "no-store"
       }

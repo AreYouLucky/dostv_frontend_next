@@ -2,11 +2,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { PostModel } from "@/types/models";
 
-
+const baseURL =
+  typeof window === "undefined"
+    ? process.env.BACKEND_INTERNAL_URL
+    : process.env.NEXT_PUBLIC_BACKEND_API_URL;
 export const getProgramInfo = async (slug: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-program-info/${slug}`,
+      `${baseURL}/api/get-program-info/${slug}`,
       {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
@@ -33,7 +36,7 @@ export function useGetProgramRecentPosts(code: string) {
 
     queryFn: async (): Promise<PostModel[]> => {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/program-recent-posts/${code}`,
+        `${baseURL}/api/program-recent-posts/${code}`,
         {
           headers: {
             Accept: "application/json",

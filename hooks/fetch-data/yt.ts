@@ -1,9 +1,13 @@
 
+const baseURL =
+  typeof window === "undefined"
+    ? process.env.BACKEND_INTERNAL_URL
+    : process.env.NEXT_PUBLIC_BACKEND_API_URL;
 
 export const fetchTopYTVideos = async () => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/youtube/top-videos/2026`,
+      `${baseURL}/api/youtube/top-videos/2026`,
       {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
