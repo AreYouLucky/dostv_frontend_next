@@ -3,6 +3,7 @@ import HomeContents from "./_components/home-contents";
 import { getBannerCategories } from "@/hooks/fetch-data/categories";
 import { loadRecentPosts } from "./_hooks/posts";
 import { fetchTopYTVideos } from "@/hooks/fetch-data/yt";
+export const dynamic = "force-dynamic";
 export default async function Home() {
   const categories = await getBannerCategories();
   const recentPosts = await loadRecentPosts();

@@ -2,8 +2,7 @@ import React from 'react'
 import { getProgramInfo } from '../hooks/program';
 import { Metadata } from 'next';
 import { stripHtml } from '@/lib/utils';
-import ImageLoader from '@/components/ui/image-loader';
-import { convertLongDate } from '@/lib/utils';
+export const dynamic = "force-dynamic";
 import ProgramCard from '../_components/program_card';
 import FeaturedCard from '../_components/featured_card';
 import ProgramRecentPosts from '../_components/program-recent-posts';
