@@ -1,7 +1,6 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { ProgramsModel } from "@/types/models";
-import {cache} from "react";
 
 
 export function useGetDashboardPosts(categories: number[] = []) {
