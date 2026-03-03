@@ -1,7 +1,7 @@
-import { cache } from "react";
+
 export const dynamic = "force-dynamic";
 
-export const fetchAds = cache(async () => {
+export const fetchAds = async () => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/load-advertisements`,
@@ -9,7 +9,7 @@ export const fetchAds = cache(async () => {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
         },
-        next: { revalidate: 60 } 
+        cache: "no-store"
       }
     );
 
@@ -23,4 +23,4 @@ export const fetchAds = cache(async () => {
     console.error("Ads fetch error:", error);
     return [];
   }
-});
+};

@@ -1,6 +1,6 @@
-import { cache } from "react";
 
-export const loadCategories = cache(async () => {
+
+export const loadCategories = async () => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/load-categories`,
@@ -8,7 +8,7 @@ export const loadCategories = cache(async () => {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
         },
-        next: { revalidate: 1800 }, // keep ISR
+        cache: "no-store"
       }
     );
 
@@ -22,9 +22,9 @@ export const loadCategories = cache(async () => {
     console.error("Load categories error:", error);
     return [];
   }
-});
+};
 
-export const getBannerCategories = cache(async () => {
+export const getBannerCategories = async () => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-banner-categories`,
@@ -32,7 +32,7 @@ export const getBannerCategories = cache(async () => {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
         },
-        next: { revalidate: 1800 }, // keep ISR
+        cache: "no-store"
       }
     );
 
@@ -46,4 +46,4 @@ export const getBannerCategories = cache(async () => {
     console.error("Banner categories error:", error);
     return [];
   }
-});
+};

@@ -2,7 +2,7 @@ import { cache } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { PostModel } from "@/types/models";
 
-export const getPost = cache(async (slug: string) => {
+export const getPost = async (slug: string) => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/get-post/${slug}`,
@@ -10,7 +10,7 @@ export const getPost = cache(async (slug: string) => {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
         },
-        next: { revalidate: 1800 }, // keep ISR
+             cache: "no-store"
       }
     );
 
@@ -24,7 +24,7 @@ export const getPost = cache(async (slug: string) => {
     console.error("Get post fetch error:", error);
     return null;
   }
-});
+};
 
 export function useGetProgramRelatedPost(code: string) {
   return useQuery<PostModel[]>({

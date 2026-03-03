@@ -1,6 +1,6 @@
-import { cache } from "react";
 
-export const fetchTopYTVideos = cache(async () => {
+
+export const fetchTopYTVideos = async () => {
   try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_API_URL}/api/youtube/top-videos/2026`,
@@ -8,7 +8,6 @@ export const fetchTopYTVideos = cache(async () => {
         headers: {
           "X-API-TOKEN": process.env.NEXT_PUBLIC_FRONTEND_API_TOKEN ?? "",
         },
-        next: { revalidate: 1800 }, // keep ISR
       }
     );
 
@@ -22,4 +21,4 @@ export const fetchTopYTVideos = cache(async () => {
     console.error("YT fetch error:", error);
     return [];
   }
-});
+};
